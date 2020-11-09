@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import CounterWindow from "./components/CounterWindow/CounterWindow";
+import Button from "./components/Button/Button";
+
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    let [count,setCount] = useState(0)
+    const maxNumber = 5
+
+    function increment () {
+        if (count < maxNumber){
+            let newValue = count +1
+            setCount(newValue)
+        }
+    }
+    function reset () {
+        if (count > 0){
+            setCount(0)
+        }
+
+    }
+    return (
+        <div className="App">
+            <CounterWindow count={count} maxNumber={maxNumber}/>
+            <div className="btn_block">
+            <Button onClick={increment} title={"inc"} disabled={count === maxNumber}/>
+            <Button onClick={reset} title={"rec"} disabled={count === 0}/>
+            </div>
+        </div>
+    );
 }
 
 export default App;
