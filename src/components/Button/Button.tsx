@@ -8,8 +8,8 @@ type ButtonPropsType = {
 }
 
 function Button(props: ButtonPropsType) {
-    return <div className={"btn"}>
-        <button disabled={props.disabled} onClick={props.onClick}>{props.title}</button>
+    return <div className={"btn_wrapper"}>
+        <button className={"btn"} disabled={props.disabled} onClick={props.onClick}>{props.title}</button>
     </div>
 }
 

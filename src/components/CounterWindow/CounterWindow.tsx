@@ -8,7 +8,7 @@ type CounterWindowPropsType={
 function CounterWindow(props:CounterWindowPropsType) {
     return (
         <div className="counterWindow">
-            <div className={props.count === props.maxNumber ? "red_number" : ''}><h1>{props.count}</h1></div>
+            <div className={props.count === props.maxNumber ? "red_number" : 'simple_number'}><p>{props.count}</p></div>
         </div>
     );
 }
