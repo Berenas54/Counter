@@ -32,6 +32,14 @@
     justify-content: center;
     align-items: center;
 }
+.SettingsWindow {
+    background-color: #22242f;
+    border: 5px solid #1E90FF;
+    height: 150px;
+    width: 320px;
+    margin: 10px auto;
+    border-radius: 5px;
+    }
 
 .btn_block {
     border: 5px solid #1E90FF;
@@ -62,5 +70,15 @@
 .simple_number{
     color: #1E90FF;
     font-size: 55px;
+}
+.settings_wrapper{
+    display: flex;
+    color: #1E90FF;
+    font-size: 20px;
+    margin: 25px 30px 10px 10px;
+}
+.settings_input{
+    margin-left: 19px;
+    text-align: center;
 }
 
