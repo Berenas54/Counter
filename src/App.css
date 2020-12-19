@@ -81,4 +81,10 @@
     margin-left: 19px;
     text-align: center;
 }
+.settings_input_error{
+    margin-left: 19px;
+    text-align: center;
+    background: red;
+    color: red;
+}
 

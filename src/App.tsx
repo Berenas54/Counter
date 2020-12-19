@@ -7,9 +7,21 @@ import {SettingsWindow} from "./components/SettingsWindow/SettingsWindow";
 //сделать проверку, намутить стили на дизейбл
 function App() {
 
+
+
     let [startValue, setStartValue] = useState(Number(localStorage.getItem("startValue")))
     let [maxValue, setMaxValue] = useState(Number(localStorage.getItem("maxValue")))
-    let [count, setCount] = useState(startValue)
+
+    let [count, setCount] = useState<number>(0)
+
+    const [error, setError] = useState(true)
+
+    const [valueSet, setValueSet] = useState<string>("Please Set button")
+    const [errorInput, setErrorInput] = useState(true)
+    //
+    // const [disabledSet, setDisableSet] = useState<boolean>(false)
+    // const [disabledInc, setDisableInc] = useState<boolean>(false)
+    // const [disabledReset, setDisableReset] = useState<boolean>(false)
 
     function setDisplay () {
         setCount(startValue)
@@ -17,10 +29,40 @@ function App() {
         localStorage.setItem("maxValue", maxValue.toString())
     }
 
+
+    const errorInputChecked = () => {
+        errorValue()
+    }
+
+    const errorValue = () => {
+        if (startValue === maxValue) {
+            setError(true)
+            setErrorInput(false)
+            setValueSet("startValue = maxValue")
+        } else if (startValue > maxValue) {
+            setError(true)
+            setErrorInput(false)
+            setValueSet("startValue > maxValue")
+        } else if (startValue < 0) {
+            setError(true)
+            setErrorInput(false)
+            setValueSet("startValue < 0")
+        } else if (maxValue < 0) {
+            setError(true)
+            setErrorInput(false)
+            setValueSet("maxValue < 0")
+        } else if (startValue < maxValue) {
+            setError(false)
+            setErrorInput(true)
+            setDisplay()
+        }
+
+    }
     function increment() {
         if (count < maxValue) {
-            let newValue = count + 1
-            setCount(newValue)
+            setCount(count+1)
+        } else if (count === maxValue){
+            setCount(count)
         }
     }
 
@@ -31,16 +73,17 @@ function App() {
 
     }
 
+
     return (<div className="wrapper_app">
             <div className="wrapper_window">
-                <SettingsWindow startValue={startValue} setStartValue={setStartValue} maxValue={maxValue} setMaxValue={setMaxValue} />
+                <SettingsWindow startValue={startValue} setStartValue={setStartValue} maxValue={maxValue} setMaxValue={setMaxValue} errorInput={errorInput}  />
                 <div className={"btn_block"}>
-                    <Button title={"set"} onClick={setDisplay} disabled={false}/>
+                    <Button title={"set"} onClick={errorInputChecked} disabled={false}/>
                 </div>
             </div>
 
             <div className="wrapper_window">
-                <CounterWindow count={count} maxNumber={maxValue}/>
+                <CounterWindow count={count} maxNumber={maxValue} valueSet={valueSet} error={error}/>
                 <div className="btn_block">
                     <Button onClick={increment} title={"inc"} disabled={count === maxValue}/>
                     <Button onClick={reset} title={"reset"} disabled={count === startValue}/>

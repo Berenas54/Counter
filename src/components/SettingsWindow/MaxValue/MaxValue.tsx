@@ -4,6 +4,8 @@ import '../../../App.css';
 type MaxValuePropsType={
     maxValue:number,
     setMaxValue:(value:number)=>void
+    errorInput: boolean
+    startValue: number
 }
 
 export function MaxValue(props:MaxValuePropsType) {
@@ -17,7 +19,7 @@ export function MaxValue(props:MaxValuePropsType) {
     return (
         <div className={"settings_wrapper"}>
             <div className={"settings_text"}>max value:</div>
-            <input className={"settings_input"} type={"number"} value={props.maxValue} onChange={onChangeValue}/>
+            <input className={props.maxValue <= 0 ? "settings_input_red": "settings_input"} type={"number"} value={props.maxValue} onChange={onChangeValue}/>
         </div>
     );
 }

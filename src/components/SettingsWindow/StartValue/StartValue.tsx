@@ -4,6 +4,8 @@ import '../../../App.css';
 type StartValuePropsType={
     startValue:number,
     setStartValue:(value:number)=>void
+    errorInput: boolean
+    maxValue: number
 }
 
 export function StartValue(props:StartValuePropsType) {
@@ -18,5 +20,10 @@ export function StartValue(props:StartValuePropsType) {
         </div>
     );
 }
-
+// className={
+//     `
+//        ${props.startValue < 0 ? style.inputError : style.inputStyle}
+//        ${props.startValue > props.maxValue ? style.inputError : style.inputStyle}
+//              `
+// }
 
