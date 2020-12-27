@@ -39,7 +39,8 @@ function App() {
             setError(true)
             setErrorInput(false)
             setValueSet("startValue = maxValue")
-        } else if (startValue > maxValue) {
+        }
+        else if (startValue > maxValue) {
             setError(true)
             setErrorInput(false)
             setValueSet("startValue > maxValue")
@@ -54,6 +55,7 @@ function App() {
         } else if (startValue < maxValue) {
             setError(false)
             setErrorInput(true)
+            setValueSet("Please Set button")
             setDisplay()
         }
 
@@ -76,7 +78,7 @@ function App() {
 
     return (<div className="wrapper_app">
             <div className="wrapper_window">
-                <SettingsWindow startValue={startValue} setStartValue={setStartValue} maxValue={maxValue} setMaxValue={setMaxValue} errorInput={errorInput}  />
+                <SettingsWindow startValue={startValue} setStartValue={setStartValue} maxValue={maxValue} setMaxValue={setMaxValue} errorInput={errorInput} setError={setError}  />
                 <div className={"btn_block"}>
                     <Button title={"set"} onClick={errorInputChecked} disabled={false}/>
                 </div>

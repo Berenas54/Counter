@@ -63,6 +63,14 @@
     padding: 8px 16px;
     font-size: 20px;
 }
+.btn_disabled{
+    border: 0;
+    border-radius: 5px;
+    background: red;
+    color: #22242f;
+    padding: 8px 16px;
+    font-size: 20px;
+}
 .red_number{
     color: red;
     font-size: 55px;
@@ -85,6 +93,5 @@
     margin-left: 19px;
     text-align: center;
     background: red;
-    color: red;
 }
 

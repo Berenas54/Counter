@@ -10,7 +10,7 @@ type CounterWindowPropsType={
 function CounterWindow(props:CounterWindowPropsType) {
     return (
         <div className="counterWindow">
-            { props.error ?<div className={props.count === props.maxNumber ? "red_number" : 'simple_number'}><p>{props.valueSet}</p></div> :
+            { props.error ? <div className={'simple_number'}><p>{props.valueSet}</p></div> :
                 <h1 className={props.count === props.maxNumber ?  "red_number" : 'simple_number'}>{props.count}</h1>}
 
         </div>
