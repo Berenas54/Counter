@@ -1,15 +1,15 @@
 import React, {ChangeEvent} from 'react';
 import '../../../App.css';
 
-type MaxValuePropsType={
-    maxValue:number,
-    setMaxValue:(value:number)=>void
+type MaxValuePropsType = {
+    maxValue: number,
+    setMaxValue: (value: number) => void
     errorInput: boolean
     startValue: number
-    setError: (value:boolean)=>void
+    setError: (value: boolean) => void
 }
 
-export function MaxValue(props:MaxValuePropsType) {
+export function MaxValue(props: MaxValuePropsType) {
 
     const onChangeValue = (e: ChangeEvent<HTMLInputElement>) => {
         const value = e.currentTarget.valueAsNumber
@@ -20,8 +20,9 @@ export function MaxValue(props:MaxValuePropsType) {
 
     return (
         <div className={"settings_wrapper"}>
-            <div className={"settings_text"}>max value:</div>
-            <input className={props.maxValue <= 0 ? "settings_input_error": "settings_input"} type={"number"} value={props.maxValue} onChange={onChangeValue}/>
+            <div>max value:</div>
+            <input className={props.maxValue <= 0 ? "settings_input_error" : "settings_input"} type={"number"}
+                   value={props.maxValue} onChange={onChangeValue}/>
         </div>
     );
 }

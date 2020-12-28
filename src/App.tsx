@@ -4,9 +4,8 @@ import CounterWindow from "./components/CounterWindow/CounterWindow";
 import Button from "./components/Button/Button";
 import {SettingsWindow} from "./components/SettingsWindow/SettingsWindow";
 
-//сделать проверку, намутить стили на дизейбл
-function App() {
 
+function App() {
 
 
     let [startValue, setStartValue] = useState(Number(localStorage.getItem("startValue")))
@@ -23,7 +22,7 @@ function App() {
     // const [disabledInc, setDisableInc] = useState<boolean>(false)
     // const [disabledReset, setDisableReset] = useState<boolean>(false)
 
-    function setDisplay () {
+    function setDisplay() {
         setCount(startValue)
         localStorage.setItem("startValue", startValue.toString())
         localStorage.setItem("maxValue", maxValue.toString())
@@ -39,8 +38,7 @@ function App() {
             setError(true)
             setErrorInput(false)
             setValueSet("startValue = maxValue")
-        }
-        else if (startValue > maxValue) {
+        } else if (startValue > maxValue) {
             setError(true)
             setErrorInput(false)
             setValueSet("startValue > maxValue")
@@ -60,10 +58,11 @@ function App() {
         }
 
     }
+
     function increment() {
         if (count < maxValue) {
-            setCount(count+1)
-        } else if (count === maxValue){
+            setCount(count + 1)
+        } else if (count === maxValue) {
             setCount(count)
         }
     }
@@ -78,7 +77,8 @@ function App() {
 
     return (<div className="wrapper_app">
             <div className="wrapper_window">
-                <SettingsWindow startValue={startValue} setStartValue={setStartValue} maxValue={maxValue} setMaxValue={setMaxValue} errorInput={errorInput} setError={setError}  />
+                <SettingsWindow startValue={startValue} setStartValue={setStartValue} maxValue={maxValue}
+                                setMaxValue={setMaxValue} errorInput={errorInput} setError={setError}/>
                 <div className={"btn_block"}>
                     <Button title={"set"} onClick={errorInputChecked} disabled={false}/>
                 </div>

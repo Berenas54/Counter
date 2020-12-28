@@ -6,7 +6,7 @@ type StartValuePropsType = {
     setStartValue: (value: number) => void
     errorInput: boolean
     maxValue: number
-    setError: (value:boolean)=>void
+    setError: (value: boolean) => void
 }
 
 export function StartValue(props: StartValuePropsType) {
@@ -17,7 +17,7 @@ export function StartValue(props: StartValuePropsType) {
     }
     return (
         <div className={"settings_wrapper"}>
-            <div className={"settings_text"}>start value:</div>
+            <div>start value:</div>
             <input className={`${props.startValue < 0 ? "settings_input_error" : "settings_input"}
             ${props.startValue > props.maxValue ? "settings_input_error" : "settings_input"}`} type={"number"}
                    value={props.startValue} onChange={onChangeValue}/>
