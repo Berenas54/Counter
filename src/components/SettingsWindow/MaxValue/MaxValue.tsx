@@ -1,5 +1,5 @@
 import React, {ChangeEvent} from 'react';
-import '../../../App.css';
+import s from  '../../../App.module.css';
 
 type MaxValuePropsType = {
     maxValue: number,
@@ -19,9 +19,9 @@ export function MaxValue(props: MaxValuePropsType) {
 
 
     return (
-        <div className={"settings_wrapper"}>
+        <div className={s.settings_wrapper}>
             <div>max value:</div>
-            <input className={props.maxValue <= 0 ? "settings_input_error" : "settings_input"} type={"number"}
+            <input className={props.maxValue <= 0 ? s.settings_input_error : s.settings_input} type={"number"}
                    value={props.maxValue} onChange={onChangeValue}/>
         </div>
     );

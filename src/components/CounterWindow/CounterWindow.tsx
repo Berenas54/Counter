@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../App.css';
+import s from '../../App.module.css';
 
 type CounterWindowPropsType = {
     count: number
@@ -10,9 +10,9 @@ type CounterWindowPropsType = {
 
 function CounterWindow(props: CounterWindowPropsType) {
     return (
-        <div className="counterWindow">
-            {props.error ? <div className={'simple_number'}><p>{props.valueSet}</p></div> :
-                <h1 className={props.count === props.maxNumber ? "red_number" : 'simple_number'}>{props.count}</h1>}
+        <div className={s.counterWindow}>
+            {props.error ? <div className={s.simple_number}><p>{props.valueSet}</p></div> :
+                <h1 className={props.count === props.maxNumber ? s.red_number : s.simple_number}>{props.count}</h1>}
 
         </div>
     );

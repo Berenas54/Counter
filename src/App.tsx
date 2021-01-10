@@ -1,13 +1,11 @@
 import React, {useState} from 'react';
-import './App.css';
+import s from './App.module.css';
 import CounterWindow from "./components/CounterWindow/CounterWindow";
 import Button from "./components/Button/Button";
 import {SettingsWindow} from "./components/SettingsWindow/SettingsWindow";
 
 
 function App() {
-
-
     let [startValue, setStartValue] = useState(Number(localStorage.getItem("startValue")))
     let [maxValue, setMaxValue] = useState(Number(localStorage.getItem("maxValue")))
 
@@ -75,18 +73,18 @@ function App() {
     }
 
 
-    return (<div className="wrapper_app">
-            <div className="wrapper_window">
+    return (<div className={s.wrapper_app}>
+            <div className={s.wrapper_window}>
                 <SettingsWindow startValue={startValue} setStartValue={setStartValue} maxValue={maxValue}
                                 setMaxValue={setMaxValue} errorInput={errorInput} setError={setError}/>
-                <div className={"btn_block"}>
+                <div className={s.btn_block}>
                     <Button title={"set"} onClick={errorInputChecked} disabled={false}/>
                 </div>
             </div>
 
-            <div className="wrapper_window">
+            <div className={s.wrapper_window}>
                 <CounterWindow count={count} maxNumber={maxValue} valueSet={valueSet} error={error}/>
-                <div className="btn_block">
+                <div className={s.btn_block}>
                     <Button onClick={increment} title={"inc"} disabled={count === maxValue}/>
                     <Button onClick={reset} title={"reset"} disabled={count === startValue}/>
                 </div>

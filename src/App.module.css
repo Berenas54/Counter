@@ -1,5 +1,4 @@
-.wrapper_app
-{
+.wrapper_app {
     position: fixed;
     top: 0;
     left: 0;
@@ -14,8 +13,7 @@
     background-color: #22242f;
 }
 
-.wrapper_window
-{
+.wrapper_window {
     width: 350px;
     height: 250px;
     margin: 20px;
@@ -25,8 +23,7 @@
     background-color: #22242f;
 }
 
-.counterWindow
-{
+.counterWindow {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -40,30 +37,26 @@
     background-color: #22242f;
 }
 
-.SettingsWindow
-{
-    width: 320px;
+.SettingsWindow {
+    background-color: #22242f;
+    border: 5px solid #1E90FF;
     height: 150px;
+    width: 320px;
     margin: 10px auto;
-
-    composes: wrapper_window;
+    border-radius: 5px;
 }
 
-.btn_block
-{
+.btn_block {
+    composes: counterWindow;
     height: 50px;
     margin: auto;
-
-    composes: counterWindow;
 }
 
-.btn_wrapper
-{
+.btn_wrapper {
     margin-left: 15px;
 }
 
-.btn
-{
+.btn {
     font-size: 20px;
 
     padding: 8px 16px;
@@ -74,29 +67,25 @@
     background: #4676d7;
 }
 
-.btn_disabled
-{
-    background: red;
-
+.btn_disabled {
     composes: btn;
+
+    background: red;
 }
 
-.red_number
-{
+.red_number {
     font-size: 55px;
 
     color: red;
 }
 
-.simple_number
-{
+.simple_number {
     font-size: 55px;
 
     color: #1e90ff;
 }
 
-.settings_wrapper
-{
+.settings_wrapper {
     font-size: 20px;
 
     display: flex;
@@ -106,16 +95,14 @@
     color: #1e90ff;
 }
 
-.settings_input
-{
+.settings_input {
     margin-left: 19px;
 
     text-align: center;
 }
 
-.settings_input_error
-{
+.settings_input_error {
+    composes: settings_input;
     background: red;
 
-    composes: settings_input;
 }

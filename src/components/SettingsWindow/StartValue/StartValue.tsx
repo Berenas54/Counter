@@ -1,5 +1,5 @@
 import React, {ChangeEvent} from 'react';
-import '../../../App.css';
+import s from'../../../App.module.css';
 
 type StartValuePropsType = {
     startValue: number,
@@ -16,10 +16,10 @@ export function StartValue(props: StartValuePropsType) {
         props.setError(true)
     }
     return (
-        <div className={"settings_wrapper"}>
+        <div className={s.settings_wrapper}>
             <div>start value:</div>
-            <input className={`${props.startValue < 0 ? "settings_input_error" : "settings_input"}
-            ${props.startValue > props.maxValue ? "settings_input_error" : "settings_input"}`} type={"number"}
+            <input className={`${props.startValue < 0 ? s.settings_input_error : s.settings_input}
+            ${props.startValue > props.maxValue ? s.settings_input_error : s.settings_input}`} type={"number"}
                    value={props.startValue} onChange={onChangeValue}/>
         </div>
     );
