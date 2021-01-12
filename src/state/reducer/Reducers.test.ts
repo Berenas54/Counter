@@ -1,4 +1,6 @@
-import {Reducer} from "./Reducers";
+// import {Reducer} from "./Reducers";
+
+import { Reducer } from "./Reducers";
 
 
 test('start value should be reset', () => {
@@ -7,8 +9,8 @@ test('start value should be reset', () => {
         error:true,
         valueSet:"Please Set button",
         errorInput:true,
-        startValue:Number(localStorage.getItem("startValue")),
-        maxValue:Number(localStorage.getItem("maxValue"))
+        startValue: 0,
+        maxValue: 1
     };
 
     const endState = Reducer(startState, { type: 'RESET-COUNT' })

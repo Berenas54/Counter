@@ -16,8 +16,8 @@ export function MaxValue(props: MaxValuePropsType) {
         props.setMaxValue(value)
         props.setError(true)
     }
-
-
+    //при запуске приложения проверить а есть ли Number(localStorage.getItem("maxValue"), и если да засетать его в maxValue а если нет то оставить по умолчанию
+    //надо дергать каждый раз когда нажимаем set?
     return (
         <div className={s.settings_wrapper}>
             <div>max value:</div>

@@ -1,13 +1,23 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import s from './App.module.css';
 import CounterWindow from "./components/CounterWindow/CounterWindow";
 import Button from "./components/Button/Button";
 import {SettingsWindow} from "./components/SettingsWindow/SettingsWindow";
 
+let getMaxValue = localStorage.getItem("maxValue")
+let getStartValue = localStorage.getItem("startValue")
 
 function App() {
-    let [startValue, setStartValue] = useState(Number(localStorage.getItem("startValue")))
-    let [maxValue, setMaxValue] = useState(Number(localStorage.getItem("maxValue")))
+
+    useEffect(()=>{
+        if(getMaxValue && getStartValue){
+            setStartValue(Number(getStartValue))
+            setMaxValue(Number(getMaxValue))
+        }
+    },[])
+
+    let [startValue, setStartValue] = useState<number>(0)
+    let [maxValue, setMaxValue] = useState(1)
 
     let [count, setCount] = useState<number>(0)
 
@@ -15,13 +25,11 @@ function App() {
 
     const [valueSet, setValueSet] = useState<string>("Please Set button")
     const [errorInput, setErrorInput] = useState(true)
-    //
-    // const [disabledSet, setDisableSet] = useState<boolean>(false)
-    // const [disabledInc, setDisableInc] = useState<boolean>(false)
-    // const [disabledReset, setDisableReset] = useState<boolean>(false)
+
 
     function setDisplay() {
         setCount(startValue)
+
         localStorage.setItem("startValue", startValue.toString())
         localStorage.setItem("maxValue", maxValue.toString())
     }

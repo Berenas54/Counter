@@ -1,32 +1,42 @@
-type StateType={
-    count:number,
-    error:boolean,
-    valueSet:string,
-    errorInput:boolean,
-    startValue:number,
-    maxValue:number
-}
-type ActionType = {
-    type: string
-    [key: string]: any
-}
-let state:StateType={
-    count:0,
-    error:true,
-    valueSet:"Please Set button",
-    errorInput:true,
-    startValue:Number(localStorage.getItem("startValue")),
-    maxValue:Number(localStorage.getItem("maxValue"))
-}
+type ActionsType =
+    | ReturnType<typeof setStartValue>
+    | ReturnType<typeof setMaxValue>
+    | ReturnType<typeof setResetCount>
+    | ReturnType<typeof setIncrementCount>
 
-// меня вызовут и дадут мне стейт (почти всегда объект)
-// и инструкцию (action, тоже объект)
-// согласно прописаному type в этом action (инструкции) я поменяю state
-export const Reducer = (state: StateType, action: ActionType) => {
+let state = {
+    count: 0,
+    error: true,
+    valueSet: "Please Set button",
+    errorInput: true,
+    startValue: 0,
+    maxValue: 1
+}
+type StateType = typeof state
+
+export const Reducer = (state: StateType = state, action: ActionsType): StateType => {
     switch (action.type) {
+        case 'SET_START_VALUE':
+            return {...state, startValue: action.value}
+        case 'SET_MAX_VALUE':
+            return {...state, maxValue: action.value}
         case 'RESET-COUNT':
-            return { ...state,count:state.startValue}
+            return {...state, count: state.startValue}
+        case 'INCREMENT-COUNT': {
+            if (state.count < state.maxValue) {
+                return {...state, count: state.count + 1}
+            } else if (state.count === state.maxValue) {
+                return {...state, count: state.count}
+            } else {
+                return {...state}
+            }
+        }
+
         default:
-            throw new Error("I don't understand this type")
+            return state
     }
 }
+const setStartValue = (value: number) => ({type: 'SET_START_VALUE', value} as const)
+const setMaxValue = (value: number) => ({type: 'SET_MAX_VALUE', value} as const)
+const setResetCount = () => ({type: 'RESET-COUNT'} as const)
+const setIncrementCount = () => ({type: 'INCREMENT-COUNT'} as const)
