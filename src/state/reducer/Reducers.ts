@@ -3,8 +3,9 @@ type ActionsType =
     | ReturnType<typeof setMaxValue>
     | ReturnType<typeof setResetCount>
     | ReturnType<typeof setIncrementCount>
+    | ReturnType<typeof setCountValue>
 
-let state = {
+let initialState = {
     count: 0,
     error: true,
     valueSet: "Please Set button",
@@ -12,16 +13,23 @@ let state = {
     startValue: 0,
     maxValue: 1
 }
-type StateType = typeof state
+type StateType = typeof initialState
 
-export const Reducer = (state: StateType = state, action: ActionsType): StateType => {
+export const Reducer = (state: StateType = initialState, action: ActionsType): StateType => {
     switch (action.type) {
         case 'SET_START_VALUE':
             return {...state, startValue: action.value}
         case 'SET_MAX_VALUE':
             return {...state, maxValue: action.value}
-        case 'RESET-COUNT':
-            return {...state, count: state.startValue}
+        case 'SET_COUNT_VALUE':
+            return {...state, count: action.value}
+        case 'RESET-COUNT': {
+            if (state.count > 0) {
+                return {...state, count: state.startValue}
+            } else {
+                return {...state}
+            }
+        }
         case 'INCREMENT-COUNT': {
             if (state.count < state.maxValue) {
                 return {...state, count: state.count + 1}
@@ -36,7 +44,8 @@ export const Reducer = (state: StateType = state, action: ActionsType): StateTyp
             return state
     }
 }
-const setStartValue = (value: number) => ({type: 'SET_START_VALUE', value} as const)
-const setMaxValue = (value: number) => ({type: 'SET_MAX_VALUE', value} as const)
-const setResetCount = () => ({type: 'RESET-COUNT'} as const)
-const setIncrementCount = () => ({type: 'INCREMENT-COUNT'} as const)
+export const setStartValue = (value: number) => ({type: 'SET_START_VALUE', value} as const)
+export const setMaxValue = (value: number) => ({type: 'SET_MAX_VALUE', value} as const)
+export const setCountValue = (value: number) => ({type: 'SET_COUNT_VALUE', value} as const)
+export const setResetCount = () => ({type: 'RESET-COUNT'} as const)
+export const setIncrementCount = () => ({type: 'INCREMENT-COUNT'} as const)

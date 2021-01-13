@@ -1,5 +1,5 @@
 import React, {ChangeEvent} from 'react';
-import s from'../../../App.module.css';
+import s from '../../../App.module.css';
 
 type StartValuePropsType = {
     startValue: number,
