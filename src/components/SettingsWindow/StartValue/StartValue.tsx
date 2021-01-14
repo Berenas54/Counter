@@ -6,14 +6,14 @@ type StartValuePropsType = {
     setStartValue: (value: number) => void
     errorInput: boolean
     maxValue: number
-    setError: (value: boolean) => void
+    dispatchError: (error: boolean) => void
 }
 
 export function StartValue(props: StartValuePropsType) {
 
     let onChangeValue = (e: ChangeEvent<HTMLInputElement>) => {
         props.setStartValue(e.currentTarget.valueAsNumber)
-        props.setError(true)
+        props.dispatchError(true)
     }
     return (
         <div className={s.settings_wrapper}>

@@ -6,7 +6,7 @@ type MaxValuePropsType = {
     setMaxValue: (value: number) => void
     errorInput: boolean
     startValue: number
-    setError: (value: boolean) => void
+    dispatchError: (error: boolean) => void
 }
 
 export function MaxValue(props: MaxValuePropsType) {
@@ -14,7 +14,7 @@ export function MaxValue(props: MaxValuePropsType) {
     const onChangeValue = (e: ChangeEvent<HTMLInputElement>) => {
         const value = e.currentTarget.valueAsNumber
         props.setMaxValue(value)
-        props.setError(true)
+        props.dispatchError(true)
     }
     //при запуске приложения проверить а есть ли Number(localStorage.getItem("maxValue"), и если да засетать его в maxValue а если нет то оставить по умолчанию
     //надо дергать каждый раз когда нажимаем set?
