@@ -26,7 +26,7 @@ export const Reducer = (state: StateType = initialState, action: ActionsType): S
         case 'SET_COUNT_VALUE':
             return {...state, count: action.value}
         case "SET_TEXT":
-            return {...state, valueSet:action.text}
+            return {...state, valueSet: action.text}
         case "SET_ERROR":
             return {...state, error: action.error}
         case 'RESET-COUNT': {

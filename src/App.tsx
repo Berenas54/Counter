@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import s from './App.module.css';
 import CounterWindow from "./components/CounterWindow/CounterWindow";
 import Button from "./components/Button/Button";
@@ -29,40 +29,12 @@ function App() {
     const {count, startValue, maxValue, valueSet, error} = useSelector(selectCounter)
     const dispatch = useDispatch()
 
-    // let [startValue, setStartValue] = useState<number>(0)
-    // let [maxValue, setMaxValue] = useState(1)
-    //
-    // let [count, setCount] = useState<number>(0)
-
-    //  const [error, setError] = useState(true)
-
-    // const [valueSet, setValueSet] = useState<string>("Please Set button")
-    const [errorInput, setErrorInput] = useState(true)
-
-
     function setDisplay() {
         dispatch(setCountValue(startValue))
-        // setCount(startValue)
-
         localStorage.setItem("startValue", startValue.toString())
         localStorage.setItem("maxValue", maxValue.toString())
     }
 
-
-    // function increment() {
-    //     if (count < maxValue) {
-    //         setCount(count + 1)
-    //     } else if (count === maxValue) {
-    //         setCount(count)
-    //     }
-    // }
-    //
-    // function reset() {
-    //     if (count > 0) {
-    //         setCount(startValue)
-    //     }
-    //
-    // }
     const dispatchText = (text: string) => {
         dispatch(setText(text))
     }
@@ -91,23 +63,18 @@ function App() {
     const errorValue = () => {
         if (startValue === maxValue) {
             dispatchError(true)
-            setErrorInput(false)
             dispatchText("startValue = maxValue")
         } else if (startValue > maxValue) {
             dispatchError(true)
-            setErrorInput(false)
             dispatchText("startValue > maxValue")
         } else if (startValue < 0) {
             dispatchError(true)
-            setErrorInput(false)
             dispatchText("startValue < 0")
         } else if (maxValue < 0) {
             dispatchError(true)
-            setErrorInput(false)
             dispatchText("maxValue < 0")
         } else if (startValue < maxValue) {
             dispatchError(false)
-            setErrorInput(true)
             dispatchText("Please Set button")
             setDisplay()
         }
@@ -116,17 +83,17 @@ function App() {
     return (<div className={s.wrapper_app}>
             <div className={s.wrapper_window}>
                 <SettingsWindow startValue={startValue} setStartValue={dispatchStart} maxValue={maxValue}
-                                setMaxValue={dispatchMax} errorInput={errorInput} dispatchError={dispatchError}/>
+                                setMaxValue={dispatchMax} dispatchError={dispatchError}/>
                 <div className={s.btn_block}>
-                    <Button title={"set"} onClick={errorInputChecked} disabled={false}/>
+                    <Button title={"set"} onClick={errorInputChecked} disabled={false} error={false}/>
                 </div>
             </div>
 
             <div className={s.wrapper_window}>
                 <CounterWindow count={count} maxNumber={maxValue} valueSet={valueSet} error={error}/>
                 <div className={s.btn_block}>
-                    <Button onClick={increment} title={"inc"} disabled={count === maxValue}/>
-                    <Button onClick={reset} title={"reset"} disabled={count === startValue}/>
+                    <Button onClick={increment} title={"inc"} disabled={count === maxValue} error={error}/>
+                    <Button onClick={reset} title={"reset"} disabled={count === startValue} error={error}/>
                 </div>
             </div>
         </div>
